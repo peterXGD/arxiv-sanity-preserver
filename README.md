@@ -62,7 +62,7 @@ Running the site live is not currently set up for a fully automatic plug and pla
 
 ```bash
 python fetch_papers.py
-python download_pdfs.py
+python download_source_files.py
 python parse_pdf_to_text.py
 python thumb_pdf.py
 python analyze.py

@@ -47,14 +47,31 @@ if __name__ == "__main__":
 
   # parse input arguments
   parser = argparse.ArgumentParser()
+  # parser.add_argument('--search-query', type=str,
+  #                     default='cat:cs.CV+OR+cat:cs.AI+OR+cat:cs.LG+OR+cat:cs.CL+OR+cat:cs.NE+OR+cat:stat.ML',
+  #                     help='query used for arxiv API. See http://arxiv.org/help/api/user-manual#detailed_examples')
+  # parser.add_argument('--search-query', type=str,
+  #                     default='%28cat:cs+OR+cat:stat.ML%29+AND+%28ti:%22fuzzy+programming%22+OR+abs:%22fuzzy+programming%22%29',
+  #                     help='query used for arxiv API. See https://info.arxiv.org/help/api/user-manual.html#query_details')
   parser.add_argument('--search-query', type=str,
-                      default='cat:cs.CV+OR+cat:cs.AI+OR+cat:cs.LG+OR+cat:cs.CL+OR+cat:cs.NE+OR+cat:stat.ML',
-                      help='query used for arxiv API. See http://arxiv.org/help/api/user-manual#detailed_examples')
-  parser.add_argument('--start-index', type=int, default=0, help='0 = most recent API result')
-  parser.add_argument('--max-index', type=int, default=10000, help='upper bound on paper index we will fetch')
-  parser.add_argument('--results-per-iteration', type=int, default=100, help='passed to arxiv API')
-  parser.add_argument('--wait-time', type=float, default=5.0, help='lets be gentle to arxiv API (in number of seconds)')
-  parser.add_argument('--break-on-no-added', type=int, default=1, help='break out early if all returned query papers are already in db? 1=yes, 0=no')
+                      default='%28cat:cs+OR+cat:stat.ML%29+AND+%28ti:emerging+application+OR+abs:emerging+application%29',
+                      help='query used for arxiv API. See https://info.arxiv.org/help/api/user-manual.html#query_details')
+  # Search phrases used:
+  # default='%28cat:cs+OR+cat:stat.ML%29+AND+%28ti:stochastic+programming+OR+abs:stochastic+programming%29'
+  # default = '%28cat:cs+OR+cat:stat.ML%29+AND+%28ti:fuzzy+programming+OR+abs:fuzzy+programming%29',
+  # default = '%28cat:cs+OR+cat:stat.ML%29+AND+%28ti:linear+programming+OR+abs:linear+programming%29'
+  # default='%28cat:cs+OR+cat:stat.ML%29+AND+%28ti:nonlinear+programming+OR+abs:nonlinear+programming%29',
+  # default = '%28cat:cs+OR+cat:stat.ML%29+AND+%28ti:deterministic+global+optimization+OR+abs:deterministic+global+optimization%29',
+  # default='%28cat:cs+OR+cat:stat.ML%29+AND+%28ti:dynamic+programming+OR+abs:dynamic+programming%29'
+  # default='%28cat:cs+OR+cat:stat.ML%29+AND+%28ti:black-box+optimization+OR+abs:black-box+optimization%29',
+  # default='%28cat:cs+OR+cat:stat.ML%29+AND+%28ti:black-box+optimization+OR+abs:black-box+optimization%29'
+  # default = '%28cat:cs+OR+cat:stat.ML%29+AND+%28ti:emerging+application+OR+abs:emerging+application%29',
+  # 22000??? 24000
+  parser.add_argument('--start-index', type=int, default=18500, help='0 = most recent API result')
+  parser.add_argument('--max-index', type=int, default=30000, help='upper bound on paper index we will fetch')
+  parser.add_argument('--results-per-iteration', type=int, default=1000, help='passed to arxiv API')
+  parser.add_argument('--wait-time', type=float, default=30.0, help='lets be gentle to arxiv API (in number of seconds)')
+  parser.add_argument('--break-on-no-added', type=int, default=0, help='break out early if all returned query papers are already in db? 1=yes, 0=no')
   args = parser.parse_args()
 
   # misc hardcoded variables
