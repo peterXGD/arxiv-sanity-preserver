@@ -1,6 +1,6 @@
 # feedparser is only if you want to scrape arxiv
 feedparser~=6.0.11
-numpy~=2.0.2
+numpy~=2.0
 scipy~=1.13.1
 
 
@@ -12,16 +12,23 @@ python-twitter
 pytz~=2024.2
 
 # the following are only for serve.py
-python-dateutil~=2.9.0.post0
-flask~=3.1.0
-flask_limiter
-tornado
-pymongo~=4.10.1
+# python-dateutil~=2.9.0.post0
+# flask~=3.1.0
+# flask_limiter
+# tornado
+# pymongo~=4.10.1
 
+feedparser
+ninja
 torch~=2.2.2
 werkzeug~=3.1.3
 transformers~=4.47.1
 selenium~=4.27.1
 beautifulsoup4~=4.12.3
 datasets~=3.2.0
+chromedriver_py
+selenium
+fake_useragent
+aiofiles
+pandas
 docling~=2.14.0

@@ -67,9 +67,9 @@ if __name__ == "__main__":
   # default='%28cat:cs+OR+cat:stat.ML%29+AND+%28ti:black-box+optimization+OR+abs:black-box+optimization%29'
   # default = '%28cat:cs+OR+cat:stat.ML%29+AND+%28ti:emerging+application+OR+abs:emerging+application%29',
   # 22000??? 24000
-  parser.add_argument('--start-index', type=int, default=18500, help='0 = most recent API result')
-  parser.add_argument('--max-index', type=int, default=30000, help='upper bound on paper index we will fetch')
-  parser.add_argument('--results-per-iteration', type=int, default=1000, help='passed to arxiv API')
+  parser.add_argument('--start-index', type=int, default=400, help='0 = most recent API result')
+  parser.add_argument('--max-index', type=int, default=1000, help='upper bound on paper index we will fetch')
+  parser.add_argument('--results-per-iteration', type=int, default=200, help='passed to arxiv API')
   parser.add_argument('--wait-time', type=float, default=30.0, help='lets be gentle to arxiv API (in number of seconds)')
   parser.add_argument('--break-on-no-added', type=int, default=0, help='break out early if all returned query papers are already in db? 1=yes, 0=no')
   args = parser.parse_args()
