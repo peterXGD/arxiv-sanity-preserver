@@ -6,8 +6,8 @@ import pandas as pd
 from concurrent.futures import ProcessPoolExecutor
 
 # Folder containing the HTML files
-DOC_FOLDER = "./data/html_no_references"
-OUTPUT_FOLDER = "./data/chunked_dataset"
+DOC_FOLDER = "./data/html_processed"
+OUTPUT_FOLDER = "./data/chunked_dataset_with_name"
 MODEL_ID = "meta-llama/Llama-3.3-70B-Instruct"
 MAX_TOKENS = 2000
 
@@ -40,6 +40,7 @@ def process_file(file_name):
         doc = DocumentConverter().convert(source=doc_path).document
         chunk_iter = chunker.chunk(dl_doc=doc)
         chunks = list(chunk_iter)
+        file_name_without_extension = os.path.splitext(file_name)[0]
 
         # Prepare data for the current file
         data = {
@@ -48,6 +49,7 @@ def process_file(file_name):
             "chunk_text_tokens": [],
             "serialized_text": [],
             "serialized_text_tokens": [],
+            "filename": []
         }
 
         # Process and store chunks
@@ -65,6 +67,7 @@ def process_file(file_name):
             data["chunk_text_tokens"].append(chunk_text_tokens)
             data["serialized_text"].append(serialized_text)
             data["serialized_text_tokens"].append(serialized_text_tokens)
+            data["filename"].append(file_name_without_extension)
 
         # Convert to a pandas DataFrame
         df = pd.DataFrame(data)
@@ -95,14 +98,14 @@ def main():
         final_dataset = pd.concat((pd.read_parquet(f) for f in parquet_files), ignore_index=True)
 
         # Save the final dataset
-        final_dataset_path = "./data/chunked_dataset.parquet"
+        final_dataset_path = "./data/chunked_dataset_with_name.parquet"
         final_dataset.to_parquet(final_dataset_path, index=False)
         print(f"Final dataset saved to {final_dataset_path}")
 
-        # Delete intermediate Parquet files
-        for file_path in parquet_files:
-            os.remove(file_path)
-            print(f"Deleted intermediate Parquet file: {file_path}")
+        # # Delete intermediate Parquet files
+        # for file_path in parquet_files:
+        #     os.remove(file_path)
+        #     print(f"Deleted intermediate Parquet file: {file_path}")
 
     else:
         print("No datasets were created. Please check the input folder and files.")

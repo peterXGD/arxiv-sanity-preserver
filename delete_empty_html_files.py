@@ -1,6 +1,6 @@
 import os
 
-def delete_small_files(directory, size_limit_kb=70):
+def delete_small_files(directory, size_limit_kb=20):
     """
     Deletes files smaller than a specified size in a given directory.
 

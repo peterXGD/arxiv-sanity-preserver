@@ -37,7 +37,7 @@ def fetch_html(task):
     pid, j = task
     texs = [x["href"] for x in j["links"] if x["type"] == "application/pdf"]
     assert len(texs) == 1
-    html_url = texs[0].replace("/pdf/", "/html/").replace("/arxiv.org/", "/ar5iv.org/")
+    html_url = texs[0].replace("/pdf/", "/html/") #.replace("/arxiv.org/", "/ar5iv.org/")
     basename = html_url.split("/")[-1] + ".html"
     fname = os.path.join(Config.html_dir, basename)
 
